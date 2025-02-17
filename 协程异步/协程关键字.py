@@ -71,7 +71,9 @@ loop.run_until_complete(coroutine) # 将协程对象加入到事件循环中
 print('TIME: ', now() - start)
 """
 
-# 绑定回调
+
+"""
+# 绑定回调 : 可以在异步任务执行完毕后,绑定一个回调函数,该回调函数会在异步任务执行完毕后被调用
 import time, asyncio
 now = lambda : time.time()
 # 通过async关键字定义一个协程,该协程不能直接运行,需要将协程加入到事件循环中
@@ -88,4 +90,40 @@ loop = asyncio.get_event_loop()
 task = asyncio.ensure_future(coroutine, loop=loop)
 task.add_done_callback(callback)
 loop.run_until_complete(task)
+print('TIME: ', now() - start)
+"""
+
+"""
+# task的使用 : 没有绑定回调函数的部分
+import time,asyncio
+
+now = lambda : time.time()
+async def do_some_work(x):
+    print("Waiting for:", x)
+    return 'Done after {}s'.format(x)
+
+start = now()
+coroutine = do_some_work(2)
+loop = asyncio.get_event_loop()
+task = loop.create_task(coroutine)
+loop.run_until_complete(task)
+print('Task ret: ', task.result())
+print('TIME: ', now() - start)
+"""
+
+# 封装协程函数
+import time
+import asyncio
+now = lambda : time.time()
+async def do_some_works(x):
+    print("waiting: ", x)
+    await asyncio.sleep(x) # 异步调用asyncio.sleep(),相比于time.sleep(),不会阻塞主线程
+    return "Done after {}s".format(x)
+
+start = now() # 保存开始时间
+coroutine = do_some_works(2) # 创建协程对象
+loop = asyncio.get_event_loop() # 创建时间循环对象
+task = asyncio.ensure_future(coroutine) # 将协程封装为一个task对象
+loop.run_until_complete(task) # 开始循环
+print("Task ret", task.result()) # 获取协程返回值
 print('TIME: ', now() - start)
