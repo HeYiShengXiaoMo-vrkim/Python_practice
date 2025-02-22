@@ -1,6 +1,13 @@
 import threading
 import time
 
+"""
+# 互斥锁
+- threading.lock() 实体，创建一个锁对象
+- lock.acquire()上锁
+- lock.release()解锁
+"""
+
 # 创建一个锁对象
 lock1 = threading.Lock()
 lock2 = threading.Lock()

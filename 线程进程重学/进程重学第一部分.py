@@ -12,6 +12,14 @@ except queue.Full:
     print("队列已满，无法添加更多消息")
 """
 
+"""
+进程 
+- 进程 = multiprocessing。Process(target, args, kwargs, name) 创建进程实体对象
+- class name(进程) 创建进程类
+- 进程.start() 启动进程
+- 进程.join(timeout) 等待进程结束,以及设置超时时间
+"""
+
 # 1.进程的创建使用multiprocessing模块，支持子进程、通信和共享数据、执行不同形式的同步，提供了Process、Queue、Pipe、Lock等组件。
 import multiprocessing as mp
 import time

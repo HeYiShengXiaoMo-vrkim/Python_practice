@@ -1,6 +1,12 @@
 import time
 import multiprocessing as mp
 
+""""
+- 进程池
+- multiprocessing.Pool(process=number) 创建进程池实体
+- 进程池.close() 关闭进程池
+- 进程池.join() 等待进程池执行完毕
+"""
 def func1(msg): # 进程池函数体
     print("start:", msg)
     time.sleep(3)

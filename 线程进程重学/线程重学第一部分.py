@@ -1,6 +1,15 @@
 import time
 import threading
-
+"""
+- threading.local() 实体，创建一个共用私有对象
+- global 全局变量
+- threading.Thread(target,name,args)
+- 线程.start()启动线程
+- 线程.join() 阻塞线程，等待线程执行完毕
+- 线程.isAlive() 判断线程是否还在运行
+- 线程.setName() 设置线程名称
+- 线程.getName() 获取线程名称
+"""
 # 3. 线程之间共享全局变量
 globalNumber = 10
 
