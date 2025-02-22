@@ -45,6 +45,7 @@ storer1 = sorted([1, 2, 3,4,5,6,7,8,9], key=abs, reverse=True) # 参数的意思
 print(storer1)
 
 # 6. 闭包
+"""
 def func_out(num1):
     def func_in(num2):
         return num1 / num2 # 这里的num1是10，num2是20
@@ -52,3 +53,13 @@ def func_out(num1):
 f = func_out(10)
 result = f(20)
 print(result) # 闭包的意思是将函数作为返回值返回,并且在函数中可以使用外部的变量
+"""
+# 使用闭包求两点之间的距离
+import math
+def getDisOut(x1, y1):
+    def getDisIn(x2, y2):
+        return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    return getDisIn
+getDisIn = getDisOut(1,2)
+result = getDisIn(2,5)
+print('(1,2)到(2,5)的距离是',result)
